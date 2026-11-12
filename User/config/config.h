@@ -1,0 +1,24 @@
+#pragma once
+
+#include "pins.h"
+
+#define ROW_PINS {B15, B14, B13, B12}
+#define COL_PINS {B3, A15, A14, A13, A10}
+
+#define MATRIX_ROWS 8
+#define MATRIX_COLS 5
+
+#define COL2ROW
+#define DEBOUNCE 5
+#define DEBOUNCE_EAGER_PK
+
+#define SPLIT_KEYBOARD
+#define TRANSPORT_USART2
+
+#define MATRIX_ROWS_PER_HALF 4
+#define MATRIX_COLS_PER_HALF 5
+
+#define TAPPING_TERM_MS 185
+#define MOUSE_KEY_VELOCITY 5
+
+#define ROW_OFFSET MATRIX_ROWS_PER_HALF
