@@ -34,6 +34,7 @@ User \
 User/drivers/debounce \
 User/drivers/gpio \
 User/drivers/matrix \
+User/drivers/process_keymap \
 User/drivers/systick \
 User/drivers/usb \
 tinyusb/src \

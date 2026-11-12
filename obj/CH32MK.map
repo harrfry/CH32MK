@@ -973,6 +973,12 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/drivers/systick/systick.o
  .data          0x0000000000000000        0x0 ./User/drivers/systick/systick.o
  .bss           0x0000000000000000        0x0 ./User/drivers/systick/systick.o
+ .text          0x0000000000000000        0x0 ./User/drivers/process_keymap/process_keymap.o
+ .data          0x0000000000000000        0x0 ./User/drivers/process_keymap/process_keymap.o
+ .bss           0x0000000000000000        0x0 ./User/drivers/process_keymap/process_keymap.o
+ .debug_line    0x0000000000000000        0x0 ./User/drivers/process_keymap/process_keymap.o
+ .debug_str     0x0000000000000000      0x134 ./User/drivers/process_keymap/process_keymap.o
+ .comment       0x0000000000000000       0x34 ./User/drivers/process_keymap/process_keymap.o
  .text          0x0000000000000000        0x0 ./User/drivers/matrix/matrix.o
  .data          0x0000000000000000        0x0 ./User/drivers/matrix/matrix.o
  .bss           0x0000000000000000        0x0 ./User/drivers/matrix/matrix.o
@@ -2352,6 +2358,7 @@ LOAD ./tinyusb/src/class/audio/audio_host.o
 LOAD ./tinyusb/src/tusb.o
 LOAD ./User/drivers/usb/usb.o
 LOAD ./User/drivers/systick/systick.o
+LOAD ./User/drivers/process_keymap/process_keymap.o
 LOAD ./User/drivers/matrix/matrix.o
 LOAD ./User/drivers/gpio/gpio.o
 LOAD ./User/drivers/debounce/debounce.o
