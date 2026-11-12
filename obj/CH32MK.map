@@ -1,5 +1,7 @@
 Archive member included to satisfy reference by file (symbol)
 
+/home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_clzsi2.o)
+                              ./User/drivers/layers/layers.o (__clzsi2)
 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_divdi3.o)
                               ./Peripheral/src/ch32v20x_usart.o (__divdi3)
 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_udivdi3.o)
@@ -7,7 +9,7 @@ Archive member included to satisfy reference by file (symbol)
 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(save-restore.o)
                               ./tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.o (__riscv_save_12)
 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_clz.o)
-                              /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_divdi3.o) (__clz_tab)
+                              /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_clzsi2.o) (__clz_tab)
 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32/libg_nano.a(lib_a-memcpy.o)
                               ./tinyusb/src/portable/st/stm32_fsdev/dcd_stm32_fsdev.o (memcpy)
 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32/libg_nano.a(lib_a-memset.o)
@@ -976,12 +978,41 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/drivers/process_keymap/process_keymap.o
  .data          0x0000000000000000        0x0 ./User/drivers/process_keymap/process_keymap.o
  .bss           0x0000000000000000        0x0 ./User/drivers/process_keymap/process_keymap.o
- .debug_line    0x0000000000000000        0x0 ./User/drivers/process_keymap/process_keymap.o
- .debug_str     0x0000000000000000      0x134 ./User/drivers/process_keymap/process_keymap.o
+ .debug_info    0x0000000000000000      0x795 ./User/drivers/process_keymap/process_keymap.o
+ .debug_abbrev  0x0000000000000000      0x104 ./User/drivers/process_keymap/process_keymap.o
+ .debug_aranges
+                0x0000000000000000       0x18 ./User/drivers/process_keymap/process_keymap.o
+ .debug_line    0x0000000000000000      0x283 ./User/drivers/process_keymap/process_keymap.o
+ .debug_str     0x0000000000000000      0x230 ./User/drivers/process_keymap/process_keymap.o
  .comment       0x0000000000000000       0x34 ./User/drivers/process_keymap/process_keymap.o
  .text          0x0000000000000000        0x0 ./User/drivers/matrix/matrix.o
  .data          0x0000000000000000        0x0 ./User/drivers/matrix/matrix.o
  .bss           0x0000000000000000        0x0 ./User/drivers/matrix/matrix.o
+ .text          0x0000000000000000        0x0 ./User/drivers/layers/layers.o
+ .data          0x0000000000000000        0x0 ./User/drivers/layers/layers.o
+ .bss           0x0000000000000000        0x0 ./User/drivers/layers/layers.o
+ .text.layer_on
+                0x0000000000000000       0x16 ./User/drivers/layers/layers.o
+ .text.get_layer_mask
+                0x0000000000000000        0xa ./User/drivers/layers/layers.o
+ .text.layer_off
+                0x0000000000000000       0x1a ./User/drivers/layers/layers.o
+ .text.layer_toggle
+                0x0000000000000000       0x16 ./User/drivers/layers/layers.o
+ .text.get_highest_active_layer
+                0x0000000000000000       0x28 ./User/drivers/layers/layers.o
+ .sbss.active_layers
+                0x0000000000000000        0x4 ./User/drivers/layers/layers.o
+ .debug_info    0x0000000000000000      0x166 ./User/drivers/layers/layers.o
+ .debug_abbrev  0x0000000000000000       0xd6 ./User/drivers/layers/layers.o
+ .debug_loc     0x0000000000000000       0x9d ./User/drivers/layers/layers.o
+ .debug_aranges
+                0x0000000000000000       0x40 ./User/drivers/layers/layers.o
+ .debug_ranges  0x0000000000000000       0x30 ./User/drivers/layers/layers.o
+ .debug_line    0x0000000000000000      0x2cc ./User/drivers/layers/layers.o
+ .debug_str     0x0000000000000000      0x235 ./User/drivers/layers/layers.o
+ .comment       0x0000000000000000       0x34 ./User/drivers/layers/layers.o
+ .debug_frame   0x0000000000000000       0x6c ./User/drivers/layers/layers.o
  .text          0x0000000000000000        0x0 ./User/drivers/gpio/gpio.o
  .data          0x0000000000000000        0x0 ./User/drivers/gpio/gpio.o
  .bss           0x0000000000000000        0x0 ./User/drivers/gpio/gpio.o
@@ -2098,6 +2129,12 @@ Discarded input sections
  .debug_str     0x0000000000000000      0x2b0 ./Core/core_riscv.o
  .comment       0x0000000000000000       0x34 ./Core/core_riscv.o
  .debug_frame   0x0000000000000000      0x140 ./Core/core_riscv.o
+ .text          0x0000000000000000        0x0 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_clzsi2.o)
+ .data          0x0000000000000000        0x0 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_clzsi2.o)
+ .bss           0x0000000000000000        0x0 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_clzsi2.o)
+ .text.__clzsi2
+                0x0000000000000000       0x6e /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_clzsi2.o)
+ .debug_frame   0x0000000000000000       0x20 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_clzsi2.o)
  .text          0x0000000000000000        0x0 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_divdi3.o)
  .data          0x0000000000000000        0x0 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_divdi3.o)
  .bss           0x0000000000000000        0x0 /home/harry/Downloads/MRS2/MRS-linux-x64/resources/app/resources/linux/components/WCH/Toolchain/RISC-V Embedded GCC/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32imacxw/ilp32/libgcc.a(_divdi3.o)
@@ -2360,6 +2397,7 @@ LOAD ./User/drivers/usb/usb.o
 LOAD ./User/drivers/systick/systick.o
 LOAD ./User/drivers/process_keymap/process_keymap.o
 LOAD ./User/drivers/matrix/matrix.o
+LOAD ./User/drivers/layers/layers.o
 LOAD ./User/drivers/gpio/gpio.o
 LOAD ./User/drivers/debounce/debounce.o
 LOAD ./User/ch32v20x_it.o

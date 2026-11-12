@@ -33,6 +33,7 @@ Startup \
 User \
 User/drivers/debounce \
 User/drivers/gpio \
+User/drivers/layers \
 User/drivers/matrix \
 User/drivers/process_keymap \
 User/drivers/systick \

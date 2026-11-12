@@ -208,7 +208,7 @@ static inline uint8_t get_mod_mask(uint8_t mod) {
 #define HID_MOUSE_BUTTON_2      (1U << 1)
 #define HID_MOUSE_BUTTON_3      (1U << 2)
 #define HID_MOUSE_BUTTON_4      (1U << 3)
-#define HID_MOUSE_BUTTON_5       (1U << 4)
+#define HID_MOUSE_BUTTON_5      (1U << 4)
 
 #define MS_BTN1             MSBTN(HID_MOUSE_BUTTON_1)
 #define MS_BTN2             MSBTN(HID_MOUSE_BUTTON_2)

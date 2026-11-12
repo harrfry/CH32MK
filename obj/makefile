@@ -63,6 +63,7 @@ RM := rm -rf
 -include User/drivers/systick/subdir.mk
 -include User/drivers/process_keymap/subdir.mk
 -include User/drivers/matrix/subdir.mk
+-include User/drivers/layers/subdir.mk
 -include User/drivers/gpio/subdir.mk
 -include User/drivers/debounce/subdir.mk
 -include User/subdir.mk
