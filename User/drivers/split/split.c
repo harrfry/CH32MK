@@ -1,14 +1,15 @@
 #include "split.h"
 #include "ch32v20x.h"
 #include "config.h"
+#include <stdio.h>
 #include <stdbool.h>
 
 volatile key_packet_t rx_buffer[SPLIT_BUFFER_SIZE] = {0};
 volatile key_packet_t tx_packet = {0};
-static uint16_t rx_read_ptr = 0;
-static key_packet_t tx_ring_buffer[SPLIT_BUFFER_SIZE] = {0};
-static uint8_t tx_head = 0;
-static uint8_t tx_tail = 0;
+volatile uint16_t rx_read_ptr = 0;
+volatile key_packet_t tx_ring_buffer[SPLIT_BUFFER_SIZE] = {0};
+volatile uint8_t tx_head = 0;
+volatile uint8_t tx_tail = 0;
 
 #ifndef ROW_OFFSET
 #define ROW_OFFSET 0
@@ -62,9 +63,8 @@ void split_transport_init(void) {
     DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)(&USART2->DATAR);
     DMA_InitStructure.DMA_MemoryBaseAddr     = (uint32_t)(&tx_packet);
     DMA_InitStructure.DMA_DIR                = DMA_DIR_PeripheralDST;
-    DMA_InitStructure.DMA_BufferSize         = sizeof(key_packet_t);
     DMA_InitStructure.DMA_PeripheralInc      = DMA_PeripheralInc_Disable;
-    DMA_InitStructure.DMA_MemoryInc          = DMA_MemoryInc_Disable; // Fixed: Disabled for single struct pointer!
+    DMA_InitStructure.DMA_MemoryInc          = DMA_MemoryInc_Enable; // must be enabled as the struct is 4 bytes long
     DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
     DMA_InitStructure.DMA_MemoryDataSize     = DMA_MemoryDataSize_Byte;
     DMA_InitStructure.DMA_Mode               = DMA_Mode_Normal;
@@ -90,7 +90,6 @@ void split_transport_init(void) {
     USART_DMACmd(USART2, USART_DMAReq_Tx | USART_DMAReq_Rx, ENABLE);
     DMA_Cmd(DMA1_Channel6, ENABLE);
     
-    //USART_ITConfig(USART2, USART_IT_IDLE, ENABLE);
     USART_Cmd(USART2, ENABLE);
 
 #elif defined(TRANSPORT_USART1)
@@ -129,7 +128,7 @@ void split_transport_init(void) {
     DMA_InitStructure.DMA_DIR                = DMA_DIR_PeripheralDST;
     DMA_InitStructure.DMA_BufferSize         = sizeof(key_packet_t);
     DMA_InitStructure.DMA_PeripheralInc      = DMA_PeripheralInc_Disable;
-    DMA_InitStructure.DMA_MemoryInc          = DMA_MemoryInc_Disable; // Fixed: Disabled for single struct pointer!
+    DMA_InitStructure.DMA_MemoryInc          = DMA_MemoryInc_Enable;
     DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
     DMA_InitStructure.DMA_MemoryDataSize     = DMA_MemoryDataSize_Byte;
     DMA_InitStructure.DMA_Mode               = DMA_Mode_Normal;
@@ -155,7 +154,6 @@ void split_transport_init(void) {
     USART_DMACmd(USART1, USART_DMAReq_Tx | USART_DMAReq_Rx, ENABLE);
     DMA_Cmd(DMA1_Channel5, ENABLE);
     
-    //USART_ITConfig(USART1, USART_IT_IDLE, ENABLE);
     USART_Cmd(USART1, ENABLE);
 #endif
 }
@@ -163,13 +161,17 @@ void split_transport_init(void) {
 uint16_t usart_rx_available(void) {
     #ifdef TRANSPORT_USART2
     uint16_t current_byte_idx = (SPLIT_BUFFER_SIZE * sizeof(key_packet_t)) - DMA_GetCurrDataCounter(DMA1_Channel6);
+    #endif
+    #ifdef TRANSPORT_USART1
+    uint16_t current_byte_idx = (SPLIT_BUFFER_SIZE * sizeof(key_packet_t)) - DMA_GetCurrDataCounter(DMA1_Channel6);
+    #endif
     uint16_t rx_write_ptr = current_byte_idx / sizeof(key_packet_t);
     if(rx_write_ptr >= rx_read_ptr) {
-        return rx_write_ptr + rx_read_ptr;
+        return rx_write_ptr - rx_read_ptr;
     } else {
         return (SPLIT_BUFFER_SIZE - rx_read_ptr) + rx_write_ptr;
     }
-    #endif
+    
 }
 
 key_packet_t usart_rx_read(void) {
@@ -196,7 +198,7 @@ void usart_tx_send(uint8_t row, uint8_t col, uint8_t state) {
 
 void process_tx_queue(void) {
     #ifdef TRANSPORT_USART2
-    if(DMA_GetCurrDataCounter(DMA1_Channel7) == 0 && (USART2->STATR & USART_FLAG_TC)) {
+    if(DMA_GetCurrDataCounter(DMA1_Channel7) == 0) {
         if(tx_head != tx_tail) {
             DMA_Cmd(DMA1_Channel7, DISABLE);
             tx_packet = tx_ring_buffer[tx_tail];
@@ -205,6 +207,19 @@ void process_tx_queue(void) {
             DMA_SetCurrDataCounter(DMA1_Channel7, sizeof(key_packet_t));
             DMA1_Channel7->MADDR = (uint32_t)&tx_packet;
             DMA_Cmd(DMA1_Channel7, ENABLE);
+        }
+    }
+    #endif
+    #ifdef TRANSPORT_USART1
+    if(DMA_GetCurrDataCounter(DMA1_Channel;) == 0) {
+        if(tx_head != tx_tail) {
+            DMA_Cmd(DMA1_Channel4, DISABLE);
+            tx_packet = tx_ring_buffer[tx_tail];
+            tx_tail = (tx_tail + 1) % SPLIT_BUFFER_SIZE;
+
+            DMA_SetCurrDataCounter(DMA1_Channel4, sizeof(key_packet_t));
+            DMA1_Channel4->MADDR = (uint32_t)&tx_packet;
+            DMA_Cmd(DMA1_Channel4, ENABLE);
         }
     }
     #endif
@@ -218,7 +233,7 @@ void split_housekeeping_task(volatile bool matrix_debounced[MATRIX_ROWS][MATRIX_
         if(packet.checksum == checksum) {
             matrix_debounced[packet.row + ROW_OFFSET][packet.col + COL_OFFSET] = (packet.state == 1);
         }
-
+        
     } else {
         process_tx_queue();
     }

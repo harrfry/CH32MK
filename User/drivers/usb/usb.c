@@ -169,3 +169,9 @@ void remove_modifier_from_report(uint8_t mod_mask) {
   return;
 }
 
+void send_reports_to_host(void) {
+  if(tud_hid_ready()) {
+  tud_hid_keyboard_report(0, modifiers_mask, keyboard_report);
+  }
+}
+

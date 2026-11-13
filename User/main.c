@@ -25,7 +25,9 @@
 #include "debounce.h"
 #include "usb.h"
 #include "process_matrix.h"
+#include "engine.h"
 #include "split.h"
+#include <stdio.h>
 
 /* Global typedef */
 
@@ -60,21 +62,31 @@ int main(void)
     SysTick_Init();
     init_matrix_pins(row_pins, col_pins);
     split_transport_init();
-    
     while(1)
     {
+        bool matrix_changed = false;
         if(tud_connected()) {
             is_master = true;
         }
         tud_task(); 
         matrix_scan_raw(row_pins, col_pins, matrix_raw);
-        debounce(matrix_raw, matrix_debounced);
+        matrix_changed = debounce(matrix_raw, matrix_debounced);
         print_matrix_task();
-        process_matrix_changed(matrix_debounced, matrix_previous);
+        if(!is_master) {
+            if(matrix_changed) {
+                for(uint8_t r = 0; r < MATRIX_ROWS_PER_HALF; r++) {
+                    for(uint8_t c = 0; c < MATRIX_COLS_PER_HALF; c++) {
+                        if(matrix_debounced[r][c] != matrix_previous[r][c]) {
+                            usart_tx_send(r, c, matrix_debounced[r][c] ? 1U : 0U);
+                        }
+                    }
+                }
+            }
+        }
         split_housekeeping_task(matrix_debounced, is_master);
-        
-        
-
+        process_matrix_changed(matrix_debounced, matrix_previous);
+        process_keyboard_queue();
+        send_reports_to_host();
     }
 }
 
@@ -82,7 +94,7 @@ void print_matrix_task() {
     static uint32_t previous = 0;
     uint32_t current_time = sys_ticks_ms;
     if(current_time - previous > 1000) {
-            print_matrix_state(matrix_raw);
+            print_matrix_state(matrix_debounced);
             previous = current_time;
     }
 }
