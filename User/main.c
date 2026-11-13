@@ -72,10 +72,10 @@ int main(void)
         debounce(matrix_raw, matrix_debounced);
         if(is_master) {
             process_matrix_changed(matrix_debounced, matrix_previous);
-            if(tud_hid_ready()) {
-                process_keyboard_queue();
-                send_reports_to_host();
-                tud_task();
+            if(tud_hid_ready()) { // this check must be performed or otherwise keypresses get swallowed
+                process_keyboard_queue(); // only process through the queue when the hid endpoint is ready
+                send_reports_to_host(); // ship em off
+                tud_task(); // idk call this for good measure
             }
         } else {
             slave_process_matrix(matrix_debounced, matrix_previous);
