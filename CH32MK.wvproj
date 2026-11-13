@@ -153,7 +153,8 @@
 							"${project}/User/drivers/layers",
 							"${project}/User/drivers/process_keymap",
 							"${project}/User/drivers/events",
-							"${project}/User/drivers/process_matrix"
+							"${project}/User/drivers/process_matrix",
+							"${project}/User/drivers/engine"
 						],
 						"include_system_paths": [],
 						"include_files": []

@@ -1009,6 +1009,20 @@ Discarded input sections
                 0x0000000000000000       0x38 ./User/drivers/events/events.o
  .text.queue_peek_next
                 0x0000000000000000       0x36 ./User/drivers/events/events.o
+ .text          0x0000000000000000        0x0 ./User/drivers/engine/engine.o
+ .data          0x0000000000000000        0x0 ./User/drivers/engine/engine.o
+ .bss           0x0000000000000000        0x0 ./User/drivers/engine/engine.o
+ .text.process_keyboard_queue
+                0x0000000000000000        0x2 ./User/drivers/engine/engine.o
+ .debug_info    0x0000000000000000      0x933 ./User/drivers/engine/engine.o
+ .debug_abbrev  0x0000000000000000      0x1bc ./User/drivers/engine/engine.o
+ .debug_aranges
+                0x0000000000000000       0x20 ./User/drivers/engine/engine.o
+ .debug_ranges  0x0000000000000000       0x10 ./User/drivers/engine/engine.o
+ .debug_line    0x0000000000000000      0x1b1 ./User/drivers/engine/engine.o
+ .debug_str     0x0000000000000000      0x5af ./User/drivers/engine/engine.o
+ .comment       0x0000000000000000       0x34 ./User/drivers/engine/engine.o
+ .debug_frame   0x0000000000000000       0x20 ./User/drivers/engine/engine.o
  .text          0x0000000000000000        0x0 ./User/drivers/debounce/debounce.o
  .data          0x0000000000000000        0x0 ./User/drivers/debounce/debounce.o
  .bss           0x0000000000000000        0x0 ./User/drivers/debounce/debounce.o
@@ -2387,6 +2401,7 @@ LOAD ./User/drivers/matrix/matrix.o
 LOAD ./User/drivers/layers/layers.o
 LOAD ./User/drivers/gpio/gpio.o
 LOAD ./User/drivers/events/events.o
+LOAD ./User/drivers/engine/engine.o
 LOAD ./User/drivers/debounce/debounce.o
 LOAD ./User/ch32v20x_it.o
 LOAD ./User/main.o

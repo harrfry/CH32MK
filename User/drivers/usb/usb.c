@@ -1,5 +1,10 @@
 #include "ch32v20x.h"
 #include "usb.h"
+#include "events.h"
+#include "keycodes.h"
+
+uint8_t keyboard_report[HID_REPORT_KEY_LIMIT] = {0};
+uint8_t modifiers_mask = 0;
 
 int _write(int fd, char *ptr, int len) {
     (void)fd;
@@ -129,5 +134,38 @@ void tud_cdc_line_state_cb(uint8_t itf, bool dtr, bool rts) {
 // Invoked when CDC interface received data from host
 void tud_cdc_rx_cb(uint8_t itf) {
   (void)itf;
+}
+
+void add_to_keyboard_report(uint8_t keycode) {
+  if(keycode == KC_NONE) return;
+  for(uint8_t i = 2; i < HID_REPORT_KEY_LIMIT; i++) {
+    if(keyboard_report[i] == keycode) return;
+  }
+  for(uint8_t i = 0; i < HID_REPORT_KEY_LIMIT; i++) {
+    if(keyboard_report[i] == 0) {
+      keyboard_report[i] = keycode;
+      return;
+    }
+  }
+}
+
+void remove_from_keyboard_report(uint8_t keycode) {
+  if(keycode == KC_NONE) return;
+  for(uint8_t i = 0; i < HID_REPORT_KEY_LIMIT; i++) {
+    if(keyboard_report[i] == keycode) {
+      keyboard_report[i] = 0;
+      break;
+    }
+  }
+}
+
+void add_modifier_to_report(uint8_t mod_mask) {
+  modifiers_mask |= mod_mask;
+  return;
+}
+
+void remove_modifier_from_report(uint8_t mod_mask) {
+  modifiers_mask &= ~mod_mask;
+  return;
 }
 

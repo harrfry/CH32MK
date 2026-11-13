@@ -32,6 +32,7 @@ Peripheral/src \
 Startup \
 User \
 User/drivers/debounce \
+User/drivers/engine \
 User/drivers/events \
 User/drivers/gpio \
 User/drivers/layers \
