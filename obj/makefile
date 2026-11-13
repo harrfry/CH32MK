@@ -61,10 +61,12 @@ RM := rm -rf
 -include tinyusb/src/subdir.mk
 -include User/drivers/usb/subdir.mk
 -include User/drivers/systick/subdir.mk
+-include User/drivers/process_matrix/subdir.mk
 -include User/drivers/process_keymap/subdir.mk
 -include User/drivers/matrix/subdir.mk
 -include User/drivers/layers/subdir.mk
 -include User/drivers/gpio/subdir.mk
+-include User/drivers/events/subdir.mk
 -include User/drivers/debounce/subdir.mk
 -include User/subdir.mk
 -include Startup/subdir.mk

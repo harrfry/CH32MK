@@ -24,6 +24,7 @@
 #include "systick.h"
 #include "debounce.h"
 #include "usb.h"
+#include "process_matrix.h"
 
 /* Global typedef */
 
@@ -40,7 +41,7 @@
  */
 bool matrix_raw[MATRIX_ROWS][MATRIX_COLS] = {0};
 volatile bool matrix_debounced[MATRIX_ROWS][MATRIX_COLS] = {0};
-volatile bool matrix_previous[MATRIX_ROWS][MATRIX_COLS] = {0};
+bool matrix_previous[MATRIX_ROWS][MATRIX_COLS] = {0};
 
 const pin_t row_pins[] = ROW_PINS;
 const pin_t col_pins[] = COL_PINS;
@@ -62,6 +63,7 @@ int main(void)
         matrix_scan_raw(row_pins, col_pins, matrix_raw);
         debounce(matrix_raw, matrix_debounced);
         print_matrix_task();
+        process_matrix_changed(matrix_debounced, matrix_previous);
         
         
 

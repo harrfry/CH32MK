@@ -1,6 +1,6 @@
 #pragma once
 
-uint32_t active_layers = 0;
+extern uint32_t active_layers;
 
 void layer_on(uint8_t index);
 

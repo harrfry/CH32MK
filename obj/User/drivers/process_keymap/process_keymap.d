@@ -28,7 +28,8 @@ User/drivers/process_keymap/process_keymap.o: \
  /home/harry/mounriver-studio-projects/CH32MK/Peripheral/inc/ch32v20x_wwdg.h \
  /home/harry/mounriver-studio-projects/CH32MK/User/ch32v20x_it.h \
  /home/harry/mounriver-studio-projects/CH32MK/Peripheral/inc/ch32v20x_misc.h \
- /home/harry/mounriver-studio-projects/CH32MK/User/drivers/keycodes/keycodes.h
+ /home/harry/mounriver-studio-projects/CH32MK/User/drivers/keycodes/keycodes.h \
+ /home/harry/mounriver-studio-projects/CH32MK/User/drivers/layers/layers.h
 
 /home/harry/mounriver-studio-projects/CH32MK/User/config/keymap.h:
 
@@ -87,3 +88,5 @@ User/drivers/process_keymap/process_keymap.o: \
 /home/harry/mounriver-studio-projects/CH32MK/Peripheral/inc/ch32v20x_misc.h:
 
 /home/harry/mounriver-studio-projects/CH32MK/User/drivers/keycodes/keycodes.h:
+
+/home/harry/mounriver-studio-projects/CH32MK/User/drivers/layers/layers.h:

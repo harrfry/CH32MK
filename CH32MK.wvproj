@@ -151,7 +151,9 @@
 							"${project}/User/drivers/split",
 							"${project}/User/drivers/systick",
 							"${project}/User/drivers/layers",
-							"${project}/User/drivers/process_keymap"
+							"${project}/User/drivers/process_keymap",
+							"${project}/User/drivers/events",
+							"${project}/User/drivers/process_matrix"
 						],
 						"include_system_paths": [],
 						"include_files": []
