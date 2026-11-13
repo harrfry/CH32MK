@@ -223,6 +223,7 @@ void process_tx_queue(void) {
         }
     }
     #endif
+    return;
 }
 
 void split_housekeeping_task(volatile bool matrix_debounced[MATRIX_ROWS][MATRIX_COLS], bool is_master) {
@@ -236,5 +237,20 @@ void split_housekeeping_task(volatile bool matrix_debounced[MATRIX_ROWS][MATRIX_
         
     } else {
         process_tx_queue();
+    }
+}
+
+void slave_process_matrix(volatile bool matrix_debounced[MATRIX_ROWS][MATRIX_COLS], bool matrix_previous[MATRIX_ROWS][MATRIX_COLS]) {
+    for(uint8_t r = 0; r < MATRIX_ROWS_PER_HALF; r++) {
+
+        for(uint8_t c = 0; c < MATRIX_COLS_PER_HALF; c++) {
+
+            if(matrix_debounced[r][c] != matrix_previous[r][c]) {
+                usart_tx_send(r, c, matrix_debounced[r][c] ? 1U : 0U);
+                matrix_previous[r][c] = matrix_debounced[r][c];
+            }
+
+        }
+
     }
 }
