@@ -22,7 +22,9 @@ User/drivers/engine/engine.o: ../User/drivers/engine/engine.c \
  /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/hid/hid_device.h \
  /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/hid/hid.h \
  /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc_device.h \
- /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc.h
+ /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc.h \
+ /home/harry/mounriver-studio-projects/CH32MK/User/drivers/events/events.h \
+ /home/harry/mounriver-studio-projects/CH32MK/User/drivers/layers/layers.h
 
 /home/harry/mounriver-studio-projects/CH32MK/User/drivers/process_keymap/process_keymap.h:
 
@@ -71,3 +73,7 @@ User/drivers/engine/engine.o: ../User/drivers/engine/engine.c \
 /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc_device.h:
 
 /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc.h:
+
+/home/harry/mounriver-studio-projects/CH32MK/User/drivers/events/events.h:
+
+/home/harry/mounriver-studio-projects/CH32MK/User/drivers/layers/layers.h:

@@ -52,7 +52,8 @@ User/main.o: ../User/main.c \
  /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/hid/hid.h \
  /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc_device.h \
  /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc.h \
- /home/harry/mounriver-studio-projects/CH32MK/User/drivers/process_matrix/process_matrix.h
+ /home/harry/mounriver-studio-projects/CH32MK/User/drivers/process_matrix/process_matrix.h \
+ /home/harry/mounriver-studio-projects/CH32MK/User/drivers/split/split.h
 
 /home/harry/mounriver-studio-projects/CH32MK/Peripheral/inc/ch32v20x.h:
 
@@ -161,3 +162,5 @@ User/main.o: ../User/main.c \
 /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc.h:
 
 /home/harry/mounriver-studio-projects/CH32MK/User/drivers/process_matrix/process_matrix.h:
+
+/home/harry/mounriver-studio-projects/CH32MK/User/drivers/split/split.h:

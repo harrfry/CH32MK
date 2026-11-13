@@ -45,7 +45,9 @@ User/drivers/usb/usb.o: ../User/drivers/usb/usb.c \
  /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/hid/hid_device.h \
  /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/hid/hid.h \
  /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc_device.h \
- /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc.h
+ /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc.h \
+ /home/harry/mounriver-studio-projects/CH32MK/User/drivers/events/events.h \
+ /home/harry/mounriver-studio-projects/CH32MK/User/drivers/keycodes/keycodes.h
 
 /home/harry/mounriver-studio-projects/CH32MK/Peripheral/inc/ch32v20x.h:
 
@@ -140,3 +142,7 @@ User/drivers/usb/usb.o: ../User/drivers/usb/usb.c \
 /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc_device.h:
 
 /home/harry/mounriver-studio-projects/CH32MK/tinyusb/src/class/cdc/cdc.h:
+
+/home/harry/mounriver-studio-projects/CH32MK/User/drivers/events/events.h:
+
+/home/harry/mounriver-studio-projects/CH32MK/User/drivers/keycodes/keycodes.h:

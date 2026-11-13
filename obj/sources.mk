@@ -39,6 +39,7 @@ User/drivers/layers \
 User/drivers/matrix \
 User/drivers/process_keymap \
 User/drivers/process_matrix \
+User/drivers/split \
 User/drivers/systick \
 User/drivers/usb \
 tinyusb/src \
