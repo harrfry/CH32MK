@@ -26,8 +26,8 @@
 #define HRM_S MT(MOD_LCTL, KC_S)
 #define HRM_T MT(MOD_LSFT, KC_T)
 
-#define HRM_N MT(MOD_RCTL, KC_N)
-#define HRM_E MT(MOD_RSFT, KC_E)
+#define HRM_N MT(MOD_RSFT, KC_N)
+#define HRM_E MT(MOD_RCTL, KC_E)
 #define HRM_I MT(MOD_LALT,   KC_I)
 #define HRM_O MT(MOD_LGUI,   KC_O)
 
@@ -35,7 +35,7 @@
 
 static const uint16_t keymap[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
-        KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SEMICOLON,
+        KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    HRM_E,    KC_U,    KC_Y,    KC_SEMICOLON,
         HRM_A,   HRM_R,   HRM_S,   HRM_T,   KC_G,    KC_M,    HRM_N,   HRM_E,   HRM_I,   HRM_O,
         KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMMA, KC_DOT,  KC_SLASH,
         KC_TAB,  KC_ESCAPE,  KC_GRAVE,  MO(1),   KC_BACKSPACE, KC_ENTER,  MO(2),   KC_SPACE,  KC_QUOTE, KC_MINUS
