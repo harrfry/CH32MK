@@ -1,0 +1,86 @@
+################################################################################
+# MRS Version: 2.5.0
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+C_SRCS += \
+../Peripheral/src/ch32v20x_adc.c \
+../Peripheral/src/ch32v20x_bkp.c \
+../Peripheral/src/ch32v20x_can.c \
+../Peripheral/src/ch32v20x_crc.c \
+../Peripheral/src/ch32v20x_dbgmcu.c \
+../Peripheral/src/ch32v20x_dma.c \
+../Peripheral/src/ch32v20x_exti.c \
+../Peripheral/src/ch32v20x_flash.c \
+../Peripheral/src/ch32v20x_gpio.c \
+../Peripheral/src/ch32v20x_i2c.c \
+../Peripheral/src/ch32v20x_iwdg.c \
+../Peripheral/src/ch32v20x_misc.c \
+../Peripheral/src/ch32v20x_opa.c \
+../Peripheral/src/ch32v20x_pwr.c \
+../Peripheral/src/ch32v20x_rcc.c \
+../Peripheral/src/ch32v20x_rtc.c \
+../Peripheral/src/ch32v20x_spi.c \
+../Peripheral/src/ch32v20x_tim.c \
+../Peripheral/src/ch32v20x_usart.c \
+../Peripheral/src/ch32v20x_wwdg.c 
+
+C_DEPS += \
+./Peripheral/src/ch32v20x_adc.d \
+./Peripheral/src/ch32v20x_bkp.d \
+./Peripheral/src/ch32v20x_can.d \
+./Peripheral/src/ch32v20x_crc.d \
+./Peripheral/src/ch32v20x_dbgmcu.d \
+./Peripheral/src/ch32v20x_dma.d \
+./Peripheral/src/ch32v20x_exti.d \
+./Peripheral/src/ch32v20x_flash.d \
+./Peripheral/src/ch32v20x_gpio.d \
+./Peripheral/src/ch32v20x_i2c.d \
+./Peripheral/src/ch32v20x_iwdg.d \
+./Peripheral/src/ch32v20x_misc.d \
+./Peripheral/src/ch32v20x_opa.d \
+./Peripheral/src/ch32v20x_pwr.d \
+./Peripheral/src/ch32v20x_rcc.d \
+./Peripheral/src/ch32v20x_rtc.d \
+./Peripheral/src/ch32v20x_spi.d \
+./Peripheral/src/ch32v20x_tim.d \
+./Peripheral/src/ch32v20x_usart.d \
+./Peripheral/src/ch32v20x_wwdg.d 
+
+OBJS += \
+./Peripheral/src/ch32v20x_adc.o \
+./Peripheral/src/ch32v20x_bkp.o \
+./Peripheral/src/ch32v20x_can.o \
+./Peripheral/src/ch32v20x_crc.o \
+./Peripheral/src/ch32v20x_dbgmcu.o \
+./Peripheral/src/ch32v20x_dma.o \
+./Peripheral/src/ch32v20x_exti.o \
+./Peripheral/src/ch32v20x_flash.o \
+./Peripheral/src/ch32v20x_gpio.o \
+./Peripheral/src/ch32v20x_i2c.o \
+./Peripheral/src/ch32v20x_iwdg.o \
+./Peripheral/src/ch32v20x_misc.o \
+./Peripheral/src/ch32v20x_opa.o \
+./Peripheral/src/ch32v20x_pwr.o \
+./Peripheral/src/ch32v20x_rcc.o \
+./Peripheral/src/ch32v20x_rtc.o \
+./Peripheral/src/ch32v20x_spi.o \
+./Peripheral/src/ch32v20x_tim.o \
+./Peripheral/src/ch32v20x_usart.o \
+./Peripheral/src/ch32v20x_wwdg.o 
+
+DIR_OBJS += \
+./Peripheral/src/*.o \
+
+DIR_DEPS += \
+./Peripheral/src/*.d \
+
+DIR_EXPANDS += \
+./Peripheral/src/*.234r.expand \
+
+
+# Each subdirectory must supply rules for building sources it contributes
+Peripheral/src/%.o: ../Peripheral/src/%.c
+	@	riscv-none-embed-gcc -march=rv32imacxw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -ffreestanding -Wunused -Wuninitialized -g -I"/home/harry/mounriver-studio-projects/CH32MK/Debug" -I"/home/harry/mounriver-studio-projects/CH32MK/Core" -I"/home/harry/mounriver-studio-projects/CH32MK/User" -I"/home/harry/mounriver-studio-projects/CH32MK/Peripheral/inc" -I"/home/harry/mounriver-studio-projects/CH32MK/tinyusb" -I"/home/harry/mounriver-studio-projects/CH32MK/tinyusb/src" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/usb" -I"/home/harry/mounriver-studio-projects/CH32MK/User/config" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/gpio" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/matrix" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/debounce" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/keycodes" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/split" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/systick" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/layers" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/process_keymap" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/events" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/process_matrix" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/engine" -I"/home/harry/mounriver-studio-projects/CH32MK/User/drivers/engine/tap-hold" -std=gnu99 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
+
