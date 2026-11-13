@@ -7,6 +7,14 @@
 #define CHARGE_DELAY_36() __asm__ volatile (".rept 36 \n\t nop \n\t .endr")
 #define CHARGE_DELAY_144() __asm__ volatile (".rept 144 \n\t nop \n\t .endr")
 
+#ifndef MATRIX_ROWS_PER_HALF
+#define MATRIX_ROWS_PER_HALF MATRIX_ROWS
+#endif
+
+#ifndef MATRIX_COLS_PER_HALF
+#define MATRIX_COLS_PER_HALF MATRIX_COLS
+#endif
+
 #if defined(ROW2COL) || defined(COL2ROW)
 void matrix_scan_raw(const pin_t *row_pins, const pin_t *col_pins, bool matrix_raw[MATRIX_ROWS][MATRIX_COLS]) {
 
