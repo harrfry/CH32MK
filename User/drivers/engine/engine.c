@@ -58,6 +58,19 @@ void process_keyboard_queue(void) {
         case ACT_MOUSE_MOVEMENT:
             queue_pop_oldest();
             break;
+        case ACT_MOD_AND_KEYCODE:
+            if(oldest->type == EVENT_PRESS) {
+                add_modifier_to_report(get_mod_mask(action_info));
+                add_to_keyboard_report(keycode);
+            } else {
+                remove_modifier_from_report(get_mod_mask(action_info));
+                remove_from_keyboard_report(keycode);
+            }
+            queue_pop_oldest();
+            break;
+
+
+
         default:
             break;
     }

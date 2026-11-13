@@ -11,7 +11,9 @@ typedef enum {
     ACT_LAYER_TG,
     ACT_MOUSE_BUTTON,
     ACT_MOUSE_MOVEMENT,
-    ACT_TRANSPARENT
+    ACT_TRANSPARENT,
+    ACT_MOD_AND_KEYCODE,
+    ACT_MACRO,
 } action_type;  // this occupies the top 4 bits [15:12]
 
 typedef enum {
@@ -66,6 +68,15 @@ static inline uint8_t get_mod_mask(uint8_t mod) {
 #define MSBTN(mask)             (uint16_t)(ACT_MOUSE_KEY << 12 | mask)
 #define MO(layer)               (uint16_t)(ACT_LAYER_MO << 12 | layer << 8)
 #define TG(layer)               (uint16_t)(ACT_LAYER_TG << 12 | layer << 8)
+#define LSFT(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_LSFT << 8 | keycode)
+#define LCTL(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_LCTL << 8 | keycode)
+#define LALT(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_LALT << 8 | keycode)
+#define LGUI(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_LGUI << 8 | keycode)
+#define RSFT(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RSFT << 8 | keycode)
+#define RCTL(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RCTL << 8 | keycode)
+#define RALT(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RALT << 8 | keycode)
+#define RGUI(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RGUI << 8 | keycode)
+
 
 #define KC_NONE             0x00
 #define KC_TRNS             (uint16_t)(ACT_TRANSPARENT << 12)
