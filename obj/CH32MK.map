@@ -1007,6 +1007,24 @@ Discarded input sections
                 0x0000000000000000       0x38 ./User/drivers/events/events.o
  .text.queue_peek_next
                 0x0000000000000000       0x36 ./User/drivers/events/events.o
+ .text          0x0000000000000000        0x0 ./User/drivers/engine/tap-hold/layer_tap.o
+ .data          0x0000000000000000        0x0 ./User/drivers/engine/tap-hold/layer_tap.o
+ .bss           0x0000000000000000        0x0 ./User/drivers/engine/tap-hold/layer_tap.o
+ .debug_line    0x0000000000000000        0x0 ./User/drivers/engine/tap-hold/layer_tap.o
+ .debug_str     0x0000000000000000      0x130 ./User/drivers/engine/tap-hold/layer_tap.o
+ .comment       0x0000000000000000       0x34 ./User/drivers/engine/tap-hold/layer_tap.o
+ .text          0x0000000000000000        0x0 ./User/drivers/engine/tap-hold/mod_tap.o
+ .data          0x0000000000000000        0x0 ./User/drivers/engine/tap-hold/mod_tap.o
+ .bss           0x0000000000000000        0x0 ./User/drivers/engine/tap-hold/mod_tap.o
+ .debug_line    0x0000000000000000        0x0 ./User/drivers/engine/tap-hold/mod_tap.o
+ .debug_str     0x0000000000000000      0x12e ./User/drivers/engine/tap-hold/mod_tap.o
+ .comment       0x0000000000000000       0x34 ./User/drivers/engine/tap-hold/mod_tap.o
+ .text          0x0000000000000000        0x0 ./User/drivers/engine/mouse/mouse_button.o
+ .data          0x0000000000000000        0x0 ./User/drivers/engine/mouse/mouse_button.o
+ .bss           0x0000000000000000        0x0 ./User/drivers/engine/mouse/mouse_button.o
+ .debug_line    0x0000000000000000        0x0 ./User/drivers/engine/mouse/mouse_button.o
+ .debug_str     0x0000000000000000      0x130 ./User/drivers/engine/mouse/mouse_button.o
+ .comment       0x0000000000000000       0x34 ./User/drivers/engine/mouse/mouse_button.o
  .text          0x0000000000000000        0x0 ./User/drivers/engine/engine.o
  .data          0x0000000000000000        0x0 ./User/drivers/engine/engine.o
  .bss           0x0000000000000000        0x0 ./User/drivers/engine/engine.o
@@ -2470,6 +2488,9 @@ LOAD ./User/drivers/matrix/matrix.o
 LOAD ./User/drivers/layers/layers.o
 LOAD ./User/drivers/gpio/gpio.o
 LOAD ./User/drivers/events/events.o
+LOAD ./User/drivers/engine/tap-hold/layer_tap.o
+LOAD ./User/drivers/engine/tap-hold/mod_tap.o
+LOAD ./User/drivers/engine/mouse/mouse_button.o
 LOAD ./User/drivers/engine/engine.o
 LOAD ./User/drivers/debounce/debounce.o
 LOAD ./User/ch32v20x_it.o

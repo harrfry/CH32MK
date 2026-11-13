@@ -68,6 +68,8 @@ RM := rm -rf
 -include User/drivers/layers/subdir.mk
 -include User/drivers/gpio/subdir.mk
 -include User/drivers/events/subdir.mk
+-include User/drivers/engine/tap-hold/subdir.mk
+-include User/drivers/engine/mouse/subdir.mk
 -include User/drivers/engine/subdir.mk
 -include User/drivers/debounce/subdir.mk
 -include User/subdir.mk

@@ -33,6 +33,8 @@ Startup \
 User \
 User/drivers/debounce \
 User/drivers/engine \
+User/drivers/engine/mouse \
+User/drivers/engine/tap-hold \
 User/drivers/events \
 User/drivers/gpio \
 User/drivers/layers \
