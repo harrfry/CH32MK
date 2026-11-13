@@ -43,7 +43,7 @@ __attribute__((interrupt("WCH-Interrupt-fast"))) __attribute__((used)) void USB_
 }
 
 void init_usb_clocks(void) {
-    RCC_USBCLKConfig(RCC_USBCLKSource_PLLCLK_Div2);
+    RCC_USBCLKConfig(RCC_USBCLKSource_PLLCLK_Div3);
     RCC_APB1PeriphClockCmd(RCC_APB1Periph_USB, ENABLE);
 }
 
