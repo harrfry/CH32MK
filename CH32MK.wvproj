@@ -154,7 +154,8 @@
 							"${project}/User/drivers/process_keymap",
 							"${project}/User/drivers/events",
 							"${project}/User/drivers/process_matrix",
-							"${project}/User/drivers/engine"
+							"${project}/User/drivers/engine",
+							"${project}/User/drivers/engine/tap-hold"
 						],
 						"include_system_paths": [],
 						"include_files": []

@@ -72,8 +72,11 @@ int main(void)
         debounce(matrix_raw, matrix_debounced);
         if(is_master) {
             process_matrix_changed(matrix_debounced, matrix_previous);
-            process_keyboard_queue();
-            send_reports_to_host();
+            if(tud_hid_ready()) {
+                process_keyboard_queue();
+                send_reports_to_host();
+                tud_task();
+            }
         } else {
             slave_process_matrix(matrix_debounced, matrix_previous);
         }
@@ -85,7 +88,7 @@ int main(void)
 void print_matrix_task() {
     static uint32_t previous = 0;
     uint32_t current_time = sys_ticks_ms;
-    if(current_time - previous > 1000) {
+    if(current_time - previous >= 1000) {
             print_matrix_state(matrix_debounced);
             previous = current_time;
     }

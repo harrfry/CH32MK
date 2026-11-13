@@ -138,7 +138,7 @@ void tud_cdc_rx_cb(uint8_t itf) {
 
 void add_to_keyboard_report(uint8_t keycode) {
   if(keycode == KC_NONE) return;
-  for(uint8_t i = 2; i < HID_REPORT_KEY_LIMIT; i++) {
+  for(uint8_t i = 0; i < HID_REPORT_KEY_LIMIT; i++) {
     if(keyboard_report[i] == keycode) return;
   }
   for(uint8_t i = 0; i < HID_REPORT_KEY_LIMIT; i++) {
@@ -169,9 +169,14 @@ void remove_modifier_from_report(uint8_t mod_mask) {
   return;
 }
 
-void send_reports_to_host(void) {
-  if(tud_hid_ready()) {
-  tud_hid_keyboard_report(0, modifiers_mask, keyboard_report);
-  }
+uint8_t* get_modifier_ptr(void) {
+  return &modifiers_mask;
 }
 
+void send_reports_to_host(void) {
+  if(tud_suspended()) {
+    tud_remote_wakeup();
+    return;
+  }
+  tud_hid_keyboard_report(0, modifiers_mask, keyboard_report);
+}

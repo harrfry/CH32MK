@@ -15,4 +15,6 @@ void add_modifier_to_report(uint8_t mod_mask);
 
 void remove_modifier_from_report(uint8_t mod_mask);
 
+uint8_t* get_modifier_ptr(void);
+
 void send_reports_to_host(void);

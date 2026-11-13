@@ -3,6 +3,8 @@
 #include "usb.h"
 #include "events.h"
 #include "layers.h"
+#include "layer_tap.h"
+#include "mod_tap.h"
 
 
 void process_keyboard_queue(void) {
@@ -45,16 +47,18 @@ void process_keyboard_queue(void) {
             queue_pop_oldest();
             break;
         case ACT_LAYER_TAP:
-            queue_pop_oldest();
+            handle_layer_tap(oldest);
             break;
         case ACT_MOD_TAP:
-            queue_pop_oldest();
+            handle_mod_tap(oldest);
             break;
         case ACT_MOUSE_BUTTON:
             queue_pop_oldest();
             break;
         case ACT_MOUSE_MOVEMENT:
             queue_pop_oldest();
+            break;
+        default:
             break;
     }
 }
