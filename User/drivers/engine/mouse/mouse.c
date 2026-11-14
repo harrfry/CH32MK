@@ -116,7 +116,11 @@ void mouse_housekeeping_task(void) {
         current_velocity = MOUSE_PEAK_VELOCITY;
     } else {
         int32_t velocity_range = MOUSE_PEAK_VELOCITY - MOUSE_STARTING_VELOCITY;
-        current_velocity = MOUSE_STARTING_VELOCITY + (int32_t)(elapsed * velocity_range) / TIME_TO_PEAK_VELOCITY_MS;
+        current_velocity = MOUSE_STARTING_VELOCITY + (int32_t)(elapsed * velocity_range) / (TIME_TO_PEAK_VELOCITY_MS - (TIME_TO_PEAK_VELOCITY_MS / 5));
+        if(elapsed <= TIME_TO_PEAK_VELOCITY_MS / 5) {
+            current_velocity = MOUSE_STARTING_VELOCITY;
+        }
+        
     }
 
     int32_t raw_x = (mouse_x_dir * current_velocity) + x_remainder;
