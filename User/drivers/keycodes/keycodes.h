@@ -61,12 +61,24 @@ static inline uint8_t get_mod_mask(uint8_t mod) {
     }
 }
 
+typedef enum {
+    LEFT = 0,
+    RIGHT,
+    UP,
+    DOWN,
+    SCROLL_LEFT,
+    SCROLL_RIGHT,
+    SCROLL_UP,
+    SCROLL_DOWN
+} mouse_movement_action_t;
+
 // standard hid keycode occupies the least significant bits [0:7]
 
 #define MT(mod, keycode)        (uint16_t)(ACT_MOD_TAP << 12 | mod << 8 | keycode)
 #define LT(layer, keycode)      (uint16_t)(ACT_LAYER_TAP << 12 | layer << 8 | keycode)
 #define MOD(mod_mask)           (uint16_t)(ACT_MODIFIER << 12 | mod_mask)
-#define MSBTN(mask)             (uint16_t)(ACT_MOUSE_KEY << 12 | mask)
+#define MSBTN(mask)             (uint16_t)(ACT_MOUSE_BUTTON << 12 | mask)
+#define MSMV(action)         (uint16_t)(ACT_MOUSE_MOVEMENT << 12 | action);
 #define MO(layer)               (uint16_t)(ACT_LAYER_MO << 12 | layer << 8)
 #define TG(layer)               (uint16_t)(ACT_LAYER_TG << 12 | layer << 8)
 #define LSFT(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_LSFT << 8 | keycode)

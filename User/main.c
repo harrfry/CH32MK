@@ -57,9 +57,10 @@ int main(void)
 {
     SystemInit();
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
+    SysTick_Init();
     init_usb_clocks();
     init_usb();
-    SysTick_Init();
+    
     init_matrix_pins(row_pins, col_pins);
     split_transport_init();
     while(1)
@@ -72,10 +73,13 @@ int main(void)
         debounce(matrix_raw, matrix_debounced);
         if(is_master) {
             process_matrix_changed(matrix_debounced, matrix_previous);
-            if(tud_hid_ready()) { // this check must be performed or otherwise keypresses get swallowed
+            if(tud_hid_n_ready(0)) { // this check must be performed or otherwise keypresses get swallowed
                 process_keyboard_queue(); // only process through the queue when the hid endpoint is ready
-                send_reports_to_host(); // ship em off
+                send_keyboard_report_to_host(); // ship em off
                 tud_task(); // idk call this for good measure
+            }
+            if(tud_hid_n_ready(1)) {
+                send_mouse_report_to_host();
             }
         } else {
             slave_process_matrix(matrix_debounced, matrix_previous);

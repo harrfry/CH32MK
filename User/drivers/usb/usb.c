@@ -6,6 +6,8 @@
 uint8_t keyboard_report[HID_REPORT_KEY_LIMIT] = {0};
 uint8_t modifiers_mask = 0;
 
+mouse_report_t mouse_report = {0};
+
 int _write(int fd, char *ptr, int len) {
     (void)fd;
     if (!tud_cdc_connected()) {
@@ -173,10 +175,38 @@ uint8_t* get_modifier_ptr(void) {
   return &modifiers_mask;
 }
 
-void send_reports_to_host(void) {
+void send_keyboard_report_to_host(void) {
   if(tud_suspended()) {
     tud_remote_wakeup();
     return;
   }
-  tud_hid_keyboard_report(0, modifiers_mask, keyboard_report);
+  tud_hid_n_keyboard_report(0, 0, modifiers_mask, keyboard_report);
+}
+
+void send_mouse_report_to_host(void) {
+  if(tud_suspended()) {
+    tud_remote_wakeup();
+    return;
+  }
+  tud_hid_n_mouse_report(1, 0, mouse_report.buttons, mouse_report.x, mouse_report.y
+                        , mouse_report.vert, mouse_report.hori);
+  mouse_report.x = 0;
+  mouse_report.y = 0;
+  mouse_report.vert = 0;
+  mouse_report.hori = 0;
+}
+
+void add_mouse_button_to_mouse_report(uint8_t button_mask) {
+  mouse_report.buttons |= button_mask;
+}
+
+void remove_mouse_button_from_mouse_report(uint8_t button_mask) {
+  mouse_report.buttons &= ~button_mask;
+}
+
+void add_mouse_movement_to_report(int8_t x, int8_t y, int8_t vert, int8_t hori) {
+  mouse_report.x += x;
+  mouse_report.y += y;
+  mouse_report.vert += vert;
+  mouse_report.hori += hori;
 }

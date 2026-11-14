@@ -5,6 +5,7 @@
 #include "layers.h"
 #include "layer_tap.h"
 #include "mod_tap.h"
+#include "mouse.h"
 
 
 void process_keyboard_queue(void) {
@@ -53,7 +54,7 @@ void process_keyboard_queue(void) {
             handle_mod_tap(oldest);
             break;
         case ACT_MOUSE_BUTTON:
-            queue_pop_oldest();
+            handle_mouse_button(oldest);
             break;
         case ACT_MOUSE_MOVEMENT:
             queue_pop_oldest();
