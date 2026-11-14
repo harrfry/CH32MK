@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 #define HID_REPORT_KEY_LIMIT    6
-#define QUEUE_SIZE              16
+#define QUEUE_SIZE              128
 #define QUEUE_MASK              (QUEUE_SIZE - 1)
 
 typedef enum {

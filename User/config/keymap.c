@@ -1,8 +1,5 @@
-#pragma once
-
 #include "config.h"
 #include "keycodes.h"
-
 
 #define LAYOUT( \
     k00, k01, k02, k03, k04, k05, k06, k07, k08, k09, \
@@ -33,7 +30,7 @@
 
 
 
-static const uint16_t keymap[][MATRIX_ROWS][MATRIX_COLS] = {
+const uint16_t keymap[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    HRM_E,    KC_U,    KC_Y,    KC_SEMICOLON,
         LSFT(KC_A),   HRM_R,   HRM_S,   HRM_T,   KC_G,    KC_M,    HRM_N,   HRM_E,   HRM_I,   HRM_O,
