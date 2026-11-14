@@ -27,9 +27,6 @@ typedef enum {
     MOD_RSFT
 } mod_tap_type_t; // this occupies the middle 4 bits [11:8];
 
-typedef struct {
-
-} macro_type_t
 
 #define MOD_MASK_LCTL       0x01
 #define MOD_MASK_LSFT       0x02
