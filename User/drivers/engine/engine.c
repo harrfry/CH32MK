@@ -68,7 +68,9 @@ void process_keyboard_queue(void) {
             }
             queue_pop_oldest();
             break;
-
+        case ACT_MACRO
+            queue_pop_oldest();
+            break;
 
 
         default:

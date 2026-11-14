@@ -27,6 +27,10 @@ typedef enum {
     MOD_RSFT
 } mod_tap_type_t; // this occupies the middle 4 bits [11:8];
 
+typedef struct {
+
+} macro_type_t
+
 #define MOD_MASK_LCTL       0x01
 #define MOD_MASK_LSFT       0x02
 #define MOD_MASK_LALT       0x04
@@ -47,7 +51,7 @@ static inline uint8_t get_mod_mask(uint8_t mod) {
         case MOD_LSFT:
             return MOD_MASK_LSFT;
         case MOD_RGUI:
-            return MOD_MASK_LGUI;
+            return MOD_MASK_RGUI;
         case MOD_RALT:
             return MOD_MASK_RALT;
         case MOD_RCTL:
@@ -76,6 +80,7 @@ static inline uint8_t get_mod_mask(uint8_t mod) {
 #define RCTL(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RCTL << 8 | keycode)
 #define RALT(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RALT << 8 | keycode)
 #define RGUI(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RGUI << 8 | keycode)
+#define MACRO(index)            (uint16_t)(ACT_MACRO << 12 | index);          
 
 
 #define KC_NONE             0x00
