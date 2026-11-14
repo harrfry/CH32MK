@@ -62,7 +62,7 @@ static inline uint8_t get_mod_mask(uint8_t mod) {
 }
 
 typedef enum {
-    LEFT = 0,
+    LEFT = 1,
     RIGHT,
     UP,
     DOWN,
@@ -78,7 +78,7 @@ typedef enum {
 #define LT(layer, keycode)      (uint16_t)(ACT_LAYER_TAP << 12 | layer << 8 | keycode)
 #define MOD(mod_mask)           (uint16_t)(ACT_MODIFIER << 12 | mod_mask)
 #define MSBTN(mask)             (uint16_t)(ACT_MOUSE_BUTTON << 12 | mask)
-#define MSMV(action)         (uint16_t)(ACT_MOUSE_MOVEMENT << 12 | action);
+#define MSMV(action)         (uint16_t)(ACT_MOUSE_MOVEMENT << 12 | action)
 #define MO(layer)               (uint16_t)(ACT_LAYER_MO << 12 | layer << 8)
 #define TG(layer)               (uint16_t)(ACT_LAYER_TG << 12 | layer << 8)
 #define LSFT(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_LSFT << 8 | keycode)
@@ -240,3 +240,12 @@ typedef enum {
 #define MS_BTN3             MSBTN(HID_MOUSE_BUTTON_3)
 #define MS_BTN4             MSBTN(HID_MOUSE_BUTTON_4)
 #define MS_BTN5             MSBTN(HID_MOUSE_BUTTON_5)
+
+#define MS_LEFT             MSMV(LEFT)
+#define MS_RIGHT            MSMV(RIGHT)
+#define MS_UP               MSMV(UP)
+#define MS_DOWN             MSMV(DOWN)
+#define MS_SCUP             MSMV(SCROLL_UP)
+#define MS_SCDN             MSMV(SCROLL_DOWN)
+#define MS_SCRL             MSMV(SCROLL_LEFT)
+#define MS_SCRR             MSMV(SCROLL_RIGHT)

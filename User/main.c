@@ -28,6 +28,7 @@
 #include "engine.h"
 #include "split.h"
 #include <stdio.h>
+#include "engine/mouse/mouse.h"
 
 /* Global typedef */
 
@@ -79,6 +80,7 @@ int main(void)
                 tud_task(); // idk call this for good measure
             }
             if(tud_hid_n_ready(1)) {
+                mouse_housekeeping_task();
                 send_mouse_report_to_host();
             }
         } else {

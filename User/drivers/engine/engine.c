@@ -57,6 +57,7 @@ void process_keyboard_queue(void) {
             handle_mouse_button(oldest);
             break;
         case ACT_MOUSE_MOVEMENT:
+            handle_mouse_movement(oldest);
             queue_pop_oldest();
             break;
         case ACT_MOD_AND_KEYCODE:
