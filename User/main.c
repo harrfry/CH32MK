@@ -52,7 +52,6 @@ const pin_t row_pins[] = ROW_PINS;
 const pin_t col_pins[] = COL_PINS;
 
 void print_matrix_task();
-static bool split_side_completed = false;
 
 
 int main(void)
@@ -69,10 +68,7 @@ int main(void)
     while(1)
     {
 
-        if(!split_side_completed) {
-            split_side_init();
-            tud_task();
-        }
+        split_side_update();
 
         tud_task();
         printf("%d\n\r", is_master());

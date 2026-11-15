@@ -4,7 +4,7 @@
 #include "split.h"
 
 static bool is_side_master = false;
-static bool is_side_left = false;
+static bool is_side_left = true;
 
 uint8_t local_row_offset = 0;
 uint8_t local_col_offset = 0;
@@ -26,7 +26,7 @@ void update_split_master(void) {
     }
 }
 
-void split_side_init(void) {
+void split_side_update(void) {
     update_split_master();
 
     if(!is_side_master) {

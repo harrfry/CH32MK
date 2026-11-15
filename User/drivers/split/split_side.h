@@ -8,4 +8,4 @@ extern uint8_t remote_col_offset;
 bool is_master(void);
 bool is_left(void);
 void update_split_master(void);
-void split_side_init(void);
+void split_side_update(void);
