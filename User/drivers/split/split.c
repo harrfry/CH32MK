@@ -3,6 +3,7 @@
 #include "config.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include "split_side.h"
 
 volatile key_packet_t rx_buffer[SPLIT_BUFFER_SIZE] = {0};
 volatile key_packet_t tx_packet = {0};
@@ -11,19 +12,11 @@ volatile key_packet_t tx_ring_buffer[SPLIT_BUFFER_SIZE] = {0};
 volatile uint8_t tx_head = 0;
 volatile uint8_t tx_tail = 0;
 
-#ifndef ROW_OFFSET
-#define ROW_OFFSET 0
-#endif
-#ifndef COL_OFFSET
-#define COL_OFFSET 0
-#endif
-
-
 void split_transport_init(void) {
     GPIO_InitTypeDef GPIO_InitStructure = {0};
     USART_InitTypeDef USART_InitStructure = {0};
     DMA_InitTypeDef DMA_InitStructure = {0};
-    NVIC_InitTypeDef NVIC_InitStructure = {0};
+    //NVIC_InitTypeDef NVIC_InitStructure = {0};
 
     // Enable Clocks
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
@@ -51,12 +44,14 @@ void split_transport_init(void) {
     USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
     USART_Init(USART2, &USART_InitStructure);
 
+    /* // not needed
     // NVIC for IDLE Line Interrupt
     NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
+    */
 
     // --- DMA TX (Channel 7) ---
     DMA_DeInit(DMA1_Channel7);
@@ -114,12 +109,14 @@ void split_transport_init(void) {
     USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
     USART_Init(USART1, &USART_InitStructure);
 
+    /* not needed
     // NVIC for IDLE Line Interrupt
     NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
+    */
 
     // --- DMA TX (Channel 4) ---
     DMA_DeInit(DMA1_Channel4);
@@ -163,7 +160,7 @@ uint16_t usart_rx_available(void) {
     uint16_t current_byte_idx = (SPLIT_BUFFER_SIZE * sizeof(key_packet_t)) - DMA_GetCurrDataCounter(DMA1_Channel6);
     #endif
     #ifdef TRANSPORT_USART1
-    uint16_t current_byte_idx = (SPLIT_BUFFER_SIZE * sizeof(key_packet_t)) - DMA_GetCurrDataCounter(DMA1_Channel6);
+    uint16_t current_byte_idx = (SPLIT_BUFFER_SIZE * sizeof(key_packet_t)) - DMA_GetCurrDataCounter(DMA1_Channel5);
     #endif
     uint16_t rx_write_ptr = current_byte_idx / sizeof(key_packet_t);
     if(rx_write_ptr >= rx_read_ptr) {
@@ -211,7 +208,7 @@ void process_tx_queue(void) {
     }
     #endif
     #ifdef TRANSPORT_USART1
-    if(DMA_GetCurrDataCounter(DMA1_Channel;) == 0) {
+    if(DMA_GetCurrDataCounter(DMA1_Channel4) == 0) {
         if(tx_head != tx_tail) {
             DMA_Cmd(DMA1_Channel4, DISABLE);
             tx_packet = tx_ring_buffer[tx_tail];
@@ -232,7 +229,7 @@ void split_housekeeping_task(volatile bool matrix_debounced[MATRIX_ROWS][MATRIX_
         if(packet.state == 3) return;
         uint8_t checksum = packet.row ^ packet.col ^ packet.state;
         if(packet.checksum == checksum) {
-            matrix_debounced[packet.row + ROW_OFFSET][packet.col + COL_OFFSET] = (packet.state == 1);
+            matrix_debounced[packet.row + remote_row_offset][packet.col + remote_col_offset] = (packet.state == 1);
         }
         
     } else {
@@ -242,12 +239,13 @@ void split_housekeeping_task(volatile bool matrix_debounced[MATRIX_ROWS][MATRIX_
 
 void slave_process_matrix(volatile bool matrix_debounced[MATRIX_ROWS][MATRIX_COLS], bool matrix_previous[MATRIX_ROWS][MATRIX_COLS]) {
     for(uint8_t r = 0; r < MATRIX_ROWS_PER_HALF; r++) {
+        uint8_t ridx = r + local_row_offset;
 
         for(uint8_t c = 0; c < MATRIX_COLS_PER_HALF; c++) {
-
-            if(matrix_debounced[r][c] != matrix_previous[r][c]) {
-                usart_tx_send(r, c, matrix_debounced[r][c] ? 1U : 0U);
-                matrix_previous[r][c] = matrix_debounced[r][c];
+            uint8_t cidx = c + local_col_offset;
+            if(matrix_debounced[ridx][cidx] != matrix_previous[ridx][cidx]) {
+                usart_tx_send(r, c, matrix_debounced[ridx][cidx] ? 1U : 0U);
+                matrix_previous[ridx][cidx] = matrix_debounced[ridx][cidx];
             }
 
         }

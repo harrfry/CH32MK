@@ -13,6 +13,14 @@ typedef struct {
     uint8_t checksum;
 } key_packet_t;
 
+#ifndef ROW_OFFSET
+#define ROW_OFFSET 0
+#endif
+#ifndef COL_OFFSET
+#define COL_OFFSET 0
+#endif
+
+
 void split_transport_init(void);
 void split_housekeeping_task(volatile bool matrix_debounced[MATRIX_ROWS][MATRIX_COLS], bool is_master);
 void usart_tx_send(uint8_t row, uint8_t col, uint8_t state);

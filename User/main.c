@@ -29,6 +29,7 @@
 #include "split.h"
 #include <stdio.h>
 #include "engine/mouse/mouse.h"
+#include "split_side.h"
 
 /* Global typedef */
 
@@ -50,9 +51,9 @@ bool matrix_previous[MATRIX_ROWS][MATRIX_COLS] = {0};
 const pin_t row_pins[] = ROW_PINS;
 const pin_t col_pins[] = COL_PINS;
 
-bool is_master = false;
-
 void print_matrix_task();
+static bool split_side_completed = false;
+
 
 int main(void)
 {
@@ -64,15 +65,20 @@ int main(void)
     
     init_matrix_pins(row_pins, col_pins);
     split_transport_init();
+
     while(1)
     {
-        tud_task();
-        if(tud_connected()) {
-            is_master = true;
+
+        if(!split_side_completed) {
+            split_side_init();
+            tud_task();
         }
+
+        tud_task();
+        printf("%d\n\r", is_master());
         matrix_scan_raw(row_pins, col_pins, matrix_raw);
         debounce(matrix_raw, matrix_debounced);
-        if(is_master) {
+        if(is_master()) {
             process_matrix_changed(matrix_debounced, matrix_previous);
             if(tud_hid_n_ready(0)) { // this check must be performed or otherwise keypresses get swallowed
                 process_keyboard_queue(); // only process through the queue when the hid endpoint is ready
@@ -82,12 +88,13 @@ int main(void)
             if(tud_hid_n_ready(1)) {
                 mouse_housekeeping_task();
                 send_mouse_report_to_host();
+                tud_task();
             }
         } else {
             slave_process_matrix(matrix_debounced, matrix_previous);
         }
 
-        split_housekeeping_task(matrix_debounced, is_master);
+        split_housekeeping_task(matrix_debounced, is_master());
     }
 }
 

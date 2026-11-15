@@ -89,7 +89,7 @@ typedef enum {
 #define RCTL(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RCTL << 8 | keycode)
 #define RALT(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RALT << 8 | keycode)
 #define RGUI(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RGUI << 8 | keycode)
-#define MACRO(index)            (uint16_t)(ACT_MACRO << 12 | index);          
+#define MACRO(index)            (uint16_t)(ACT_MACRO << 12 | index)        
 
 
 #define KC_NONE             0x00
