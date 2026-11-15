@@ -28,8 +28,6 @@
 #define HRM_I MT(MOD_LALT,   KC_I)
 #define HRM_O MT(MOD_LGUI,   KC_O)
 
-
-
 const uint16_t keymap[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    HRM_E,    KC_U,    KC_Y,    KC_SEMICOLON,
