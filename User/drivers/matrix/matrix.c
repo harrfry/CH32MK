@@ -37,14 +37,14 @@ void matrix_scan_raw(const pin_t *row_pins, const pin_t *col_pins, bool matrix_r
     for(uint8_t i = 0; i < MATRIX_COLS_PER_HALF; i++) {
         uint8_t cidx = i + local_col_offset;
             GPIO_WriteBit(col_pins[i].PORT, col_pins[i].PIN, Bit_SET);
-            CHARGE_DELAY_144(); // fuck ass charge delay because fuck ass electricity is fuck ass electricity
+            CHARGE_DELAY_144();
             for(uint8_t j = 0; j < MATRIX_ROWS_PER_HALF; j++) {
                 uint8_t ridx = j + local_row_offset;
                 matrix_raw[ridx][cidx] = (GPIO_ReadInputDataBit(row_pins[j].PORT, row_pins[j].PIN) == 1);
                 CHARGE_DELAY_36();
             }
             GPIO_WriteBit(col_pins[i].PORT, col_pins[i].PIN, Bit_RESET);
-            CHARGE_DELAY_144(); // another fuck ass delay because fuck ass electricity is fuck ass electricity
+            CHARGE_DELAY_144(); 
         }
     #endif
 }
