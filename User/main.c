@@ -74,7 +74,6 @@ int main(void)
         split_side_update();
 
         tud_task();
-        printf("%d\n\r", is_master());
         matrix_scan_raw(row_pins, col_pins, matrix_raw);
         debounce(matrix_raw, matrix_debounced);
         if(is_master()) {
