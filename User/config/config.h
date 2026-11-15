@@ -10,7 +10,7 @@
 
 #define COL2ROW
 #define DEBOUNCE 5
-#define DEBOUNCE_EAGER_PK
+#define DEBOUNCE_DEFER_PK
 
 #define SPLIT_KEYBOARD
 #define TRANSPORT_USART2
