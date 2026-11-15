@@ -64,7 +64,9 @@ int main(void)
     
     init_matrix_pins(row_pins, col_pins);
     split_transport_init();
+    #ifdef SPLIT_HAND_PIN
     split_hand_by_pin();
+    #endif
 
     while(1)
     {
