@@ -6,6 +6,7 @@
 #include "layer_tap.h"
 #include "mod_tap.h"
 #include "mouse.h"
+#include "macro.h"
 
 
 void process_keyboard_queue(void) {
@@ -15,6 +16,7 @@ void process_keyboard_queue(void) {
     uint8_t keycode_action = (oldest->keycode >> 12);
     uint8_t action_info = ((oldest->keycode >> 8) & 0x0F);
     uint8_t keycode = (uint8_t)(oldest->keycode);
+    uint16_t macro_index = (oldest->keycode & 0x0FFF);
 
     switch(keycode_action) {
         case ACT_NORMAL:
@@ -71,8 +73,7 @@ void process_keyboard_queue(void) {
             queue_pop_oldest();
             break;
         case ACT_MACRO:
-            
-            queue_pop_oldest();
+            handle_macro(macro_index, oldest);
             break;
 
 

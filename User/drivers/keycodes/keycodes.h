@@ -72,6 +72,13 @@ typedef enum {
     SCROLL_DOWN
 } mouse_movement_action_t;
 
+typedef enum {
+    MACRO_END = 0,
+    MACRO_PRESS,
+    MACRO_RELEASE,
+    MACRO_DELAY
+} macro_opcode_t;
+
 // standard hid keycode occupies the least significant bits [0:7]
 
 #define MT(mod, keycode)        (uint16_t)(ACT_MOD_TAP << 12 | mod << 8 | keycode)
@@ -89,8 +96,12 @@ typedef enum {
 #define RCTL(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RCTL << 8 | keycode)
 #define RALT(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RALT << 8 | keycode)
 #define RGUI(keycode)           (uint16_t)(ACT_MOD_AND_KEYCODE << 12 | MOD_RGUI << 8 | keycode)
-#define MACRO(index)            (uint16_t)(ACT_MACRO << 12 | index)
-#define MACRO_END               0x00      
+#define MACRO(index)            (uint16_t)(ACT_MACRO << 12 | index)    
+#define PRESS(keycode)          (uint32_t)(MACRO_PRESS << 24 | keycode)
+#define RELEASE(keycode)        (uint32_t)(MACRO_RELEASE << 24 | keycode)
+#define DELAY(ms)               (uint32_t)(MACRO_DELAY << 24 | ms)
+#define END                     (uint32_t)(MACRO_END)
+#define TAP(kc)                 PRESS(kc), DELAY(2), RELEASE(kc), DELAY(2)
 
 
 #define KC_NONE             0x00

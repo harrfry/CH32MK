@@ -31,7 +31,7 @@
 const uint16_t keymap[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    HRM_E,    KC_U,    KC_Y,    KC_SEMICOLON,
-        MS_LEFT,   MS_SCUP, MS_SCDN,   MS_RIGHT,   KC_G,    KC_M,    HRM_N,   HRM_E,   HRM_I,   HRM_O,
+        MACRO(0),   MS_SCUP, MS_SCDN,   MS_RIGHT,   KC_G,    KC_M,    HRM_N,   HRM_E,   HRM_I,   HRM_O,
         KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMMA, KC_DOT,  KC_SLASH,
         KC_TAB,  KC_ESCAPE,  KC_GRAVE,  MO(1),   MS_BTN1, KC_ENTER,  MO(2),   KC_SPACE,  KC_QUOTE, KC_MINUS
     ),
@@ -47,4 +47,8 @@ const uint16_t keymap[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_H,    KC_COMMA, KC_DOT,  KC_SLASH,
         KC_TAB,  KC_ESCAPE,  KC_GRAVE,  MO(1),   KC_BACKSPACE, KC_ENTER,  MO(2),   KC_SPACE,  KC_QUOTE, KC_MINUS
     ),
+};
+
+//const uint32_t macro1[] = {TAP(KC_H), TAP(KC_E), TAP(KC_L), TAP(KC_L), TAP(KC_O), END};
+const uint32_t * const macros[MACRO_COUNT] = {
 };

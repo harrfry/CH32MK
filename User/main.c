@@ -29,6 +29,7 @@
 #include "split.h"
 #include <stdio.h>
 #include "engine/mouse/mouse.h"
+#include "engine/macro/macro.h"
 #include "split_side.h"
 
 /* Global typedef */
@@ -82,6 +83,7 @@ int main(void)
                 process_keyboard_queue(); // only process through the queue when the hid endpoint is ready
                 send_keyboard_report_to_host(); // ship em off
                 tud_task(); // idk call this for good measure
+                macro_task(sys_ticks_ms);
             }
             if(tud_hid_n_ready(1)) {
                 mouse_housekeeping_task();

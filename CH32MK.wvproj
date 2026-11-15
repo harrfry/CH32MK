@@ -156,7 +156,8 @@
 							"${project}/User/drivers/process_matrix",
 							"${project}/User/drivers/engine",
 							"${project}/User/drivers/engine/tap-hold",
-							"${project}/User/drivers/engine/mouse"
+							"${project}/User/drivers/engine/mouse",
+							"${project}/User/drivers/engine/macro"
 						],
 						"include_system_paths": [],
 						"include_files": []
