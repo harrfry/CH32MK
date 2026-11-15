@@ -26,6 +26,23 @@ void update_split_master(void) {
     }
 }
 
+#ifdef SPLIT_HAND_PIN
+void split_hand_by_pin(void) {
+    pin_t split_pin = SPLIT_HAND_PIN;
+    GPIO_InitTypeDef GPIO_InitStructure = {0};
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+    GPIO_InitStructure.GPIO_Pin = split_pin.PIN;
+    GPIO_Init(split_pin.PORT, &GPIO_InitStructure);
+
+    uint8_t value = GPIO_ReadInputDataBit(split_pin.PORT, split_pin.PIN);
+    if(value) {
+        is_side_left = true;
+    } else {
+        is_side_left = false;
+    }
+}
+#endif
+
 void split_side_update(void) {
     update_split_master();
 

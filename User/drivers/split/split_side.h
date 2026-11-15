@@ -9,3 +9,4 @@ bool is_master(void);
 bool is_left(void);
 void update_split_master(void);
 void split_side_update(void);
+void split_hand_by_pin(void);
