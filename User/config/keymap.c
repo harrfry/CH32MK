@@ -49,6 +49,15 @@ const uint16_t keymap[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
+const uint32_t macro1[] = {
+    TAP(KC_G), TAP(KC_I), TAP(KC_T), TAP(KC_SPACE), TAP(KC_A), TAP(KC_D), TAP(KC_D),
+    TAP(KC_SPACE), TAP(KC_DOT), TAP(KC_SPACE), TAP(LSFT(KC_7)), TAP(LSFT(KC_7)), 
+    TAP(KC_SPACE), TAP(KC_G), TAP(KC_I), TAP(KC_T), TAP(KC_SPACE), TAP(KC_C), TAP(KC_O),
+    TAP(KC_M), TAP(KC_M), TAP(KC_I), TAP(KC_T), TAP(KC_SPACE), TAP(LSFT(KC_2)),
+    TAP(LSFT(KC_2)), TAP(KC_LEFT), END
+};
+
 //const uint32_t macro1[] = {TAP(KC_H), TAP(KC_E), TAP(KC_L), TAP(KC_L), TAP(KC_O), END};
 const uint32_t * const macros[MACRO_COUNT] = {
+    macro1,
 };

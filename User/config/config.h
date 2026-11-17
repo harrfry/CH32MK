@@ -25,4 +25,4 @@
 
 #define ROW_OFFSET MATRIX_ROWS_PER_HALF
 
-#define MACRO_COUNT 0
+#define MACRO_COUNT 1
