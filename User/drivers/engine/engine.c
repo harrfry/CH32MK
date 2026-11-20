@@ -60,7 +60,6 @@ void process_keyboard_queue(void) {
             break;
         case ACT_MOUSE_MOVEMENT:
             handle_mouse_movement(oldest);
-            queue_pop_oldest();
             break;
         case ACT_MOD_AND_KEYCODE:
             if(oldest->type == EVENT_PRESS) {
